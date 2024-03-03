@@ -14,22 +14,56 @@ struct OptionsData: Identifiable, Codable {
 }
 
 // MARK: - Data Provider Function
-func loadSampleData() -> [OptionsData] {
-    guard let url = Bundle.main.url(forResource: "options_data", withExtension: "json") else {
-        fatalError("Failed to locate options_data.json in bundle.")
-    }
+func loadSampleDataSync() -> [OptionsData] {
+    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data.json")!
+    var request = URLRequest(url: url)
+    request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
-    guard let data = try? Data(contentsOf: url) else {
-        fatalError("Failed to load options_data.json from bundle.")
-    }
+    let semaphore = DispatchSemaphore(value: 0)
+    var result: [OptionsData] = []
 
-    let decoder = JSONDecoder()
-    guard let loaded = try? decoder.decode([OptionsData].self, from: data) else {
-        fatalError("Failed to decode options_data.json from bundle.")
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let data = data {
+            do {
+                let decoder = JSONDecoder()
+                result = try decoder.decode([OptionsData].self, from: data)
+            } catch {
+                print("Failed to decode JSON: \(error)")
+            }
+        } else if let error = error {
+            print("Failed to load data: \(error)")
+        }
+        semaphore.signal()
     }
+    task.resume()
 
-    return loaded
+    semaphore.wait()
+    return result
 }
+
+func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
+    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data.json")!
+
+    // Create a URL request that disables caching
+    var request = URLRequest(url: url)
+    request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            completion(.failure(error))
+        } else if let data = data {
+            do {
+                let decoder = JSONDecoder()
+                let optionsData = try decoder.decode([OptionsData].self, from: data)
+                completion(.success(optionsData))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    task.resume()
+}
+
 
 // MARK: - Widget Entry
 struct SimpleEntry: TimelineEntry {
@@ -80,25 +114,48 @@ struct OptionsWidgetEntryView: View {
         .background(colorScheme == .dark ? Color.black : Color.white) // Background color for the VStack
         .cornerRadius(10) // Apply corner radius to VStack
         .edgesIgnoringSafeArea(.all) // Extend to the edges of the widget
+        .widgetURL(URL(string: "com.optimiz3d.OptionsAi.OptionsWidget://refresh")!) // Add this line
     }
 }
-
 
 // MARK: - Provider
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), optionsData: loadSampleData())
+        SimpleEntry(date: Date(), optionsData: [])
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), optionsData: loadSampleData())
-        completion(entry)
+        loadSampleData { result in
+            switch result {
+            case .success(let optionsData):
+                let entry = SimpleEntry(date: Date(), optionsData: optionsData)
+                completion(entry)
+            case .failure(let error):
+                print(error)
+                let entry = SimpleEntry(date: Date(), optionsData: [])
+                completion(entry)
+            }
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        let entries = [SimpleEntry(date: Date(), optionsData: loadSampleData())]
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        loadSampleData { result in
+            switch result {
+            case .success(let optionsData):
+                let currentDate = Date()
+                let refreshDate = Calendar.current.date(byAdding: .second, value: 10, to: currentDate)!
+                let entries = [SimpleEntry(date: currentDate, optionsData: optionsData)]
+                let timeline = Timeline(entries: entries, policy: .after(refreshDate))
+                completion(timeline)
+            case .failure(let error):
+                print(error)
+                let currentDate = Date()
+                let refreshDate = Calendar.current.date(byAdding: .second, value: 10, to: currentDate)!
+                let entries = [SimpleEntry(date: currentDate, optionsData: [])]
+                let timeline = Timeline(entries: entries, policy: .after(refreshDate))
+                completion(timeline)
+            }
+        }
     }
 }
 
@@ -118,7 +175,7 @@ struct OptionsWidget: Widget {
 // MARK: - Widget Previews
 struct OptionsWidget_Previews: PreviewProvider {
     static var previews: some View {
-        OptionsWidgetEntryView(entry: SimpleEntry(date: Date(), optionsData: loadSampleData()))
+        OptionsWidgetEntryView(entry: SimpleEntry(date: Date(), optionsData: loadSampleDataSync()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
             .environment(\.colorScheme, .dark) // Preview in dark mode
     }
