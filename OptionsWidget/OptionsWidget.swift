@@ -3,6 +3,12 @@ import SwiftUI
 
 // MARK: - Model
 struct OptionsData: Identifiable, Codable {
+    let id = UUID()
+    let date: String
+    let options: [Option]
+}
+
+struct Option: Identifiable, Codable {
     let id: String
     let percentage: Double
     var symbol: String {
@@ -15,7 +21,7 @@ struct OptionsData: Identifiable, Codable {
 
 // MARK: - Data Provider Function
 func loadSampleDataSync() -> [OptionsData] {
-    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data.json")!
+    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
     var request = URLRequest(url: url)
     request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
@@ -42,7 +48,7 @@ func loadSampleDataSync() -> [OptionsData] {
 }
 
 func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
-    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data.json")!
+    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
 
     // Create a URL request that disables caching
     var request = URLRequest(url: url)
@@ -72,49 +78,61 @@ struct SimpleEntry: TimelineEntry {
 }
 
 // MARK: - Widget Entry View
+
 struct OptionsWidgetEntryView: View {
     var entry: SimpleEntry
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("OptionsAi")
-                .font(.system(size: 20))
-                .fontWeight(.bold)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
+            // Get the last element in the optionsData array
+            if let lastOption = entry.optionsData.last {
+                HStack {
+                    Text("OptionsAi")
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+
+                    Text("-  \(lastOption.date)")
+                        .font(.system(size: 16)) // Adjust the font size here
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray)
+                }
                 .padding(.vertical, 2)
 
-            ForEach(entry.optionsData.indices, id: \.self) { index in
-                HStack {
-                    Text(entry.optionsData[index].id)
-                        .font(.system(size: 14))
-                        .lineLimit(1)
-                    Spacer()
-                    Text("\(entry.optionsData[index].percentage, specifier: "%.2f")%")
-                        .font(.system(size: 14))
-                        .foregroundColor(.white)
-                        .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
-                        .background(entry.optionsData[index].percentage > 50 ? Color.green : Color.red)
-                        .cornerRadius(5) // Less rounded corners
-                }
-                .padding(.horizontal, 5)
-                .padding(.vertical, 4) // Add vertical padding to create space for the Divider
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(lastOption.options.indices, id: \.self) { optionIndex in
+                        HStack {
+                            Text(lastOption.options[optionIndex].id)
+                                .font(.system(size: 14))
+                                .lineLimit(1)
+                            Spacer()
+                            Text("\(lastOption.options[optionIndex].percentage, specifier: "%.2f")%")
+                                .font(.system(size: 14))
+                                .foregroundColor(.white)
+                                .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+                                .background(lastOption.options[optionIndex].percentage > 50 ? Color.green : Color.red)
+                                .cornerRadius(5) // Less rounded corners
+                        }
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 4) // Add vertical padding to create space for the Divider
 
-                // Grey spacer bar, conditionally added if not the last item
-                if index < entry.optionsData.count - 1 {
-                    Divider()
-                        .background(colorScheme == .dark ? .white : .gray)
-                        .padding(.leading, 5) // Left padding to align with the text
-                        .padding(.trailing, 5) // Right padding to align with the percentage boxes
-                        .padding(.vertical, 4) // Vertical padding to ensure the Divider is centered between options
+                        // Grey spacer bar, conditionally added if not the last item
+                        if optionIndex < lastOption.options.count - 1 {
+                            Divider()
+                                .background(colorScheme == .dark ? .white : .gray)
+                                .padding(.leading, 5) // Left padding to align with the text
+                                .padding(.trailing, 5) // Right padding to align with the percentage boxes
+                                .padding(.vertical, 4) // Vertical padding to ensure the Divider is centered between options
+                        }
+                    }
                 }
             }
-            Spacer() // This will push all the content to the top
         }
         .background(colorScheme == .dark ? Color.black : Color.white) // Background color for the VStack
         .cornerRadius(10) // Apply corner radius to VStack
         .edgesIgnoringSafeArea(.all) // Extend to the edges of the widget
-        .widgetURL(URL(string: "com.optimiz3d.OptionsAi.OptionsWidget://refresh")!) // Add this line
+        .padding(0) // Remove default padding
     }
 }
 
@@ -168,7 +186,12 @@ struct OptionsWidget: Widget {
         }
         .configurationDisplayName("Options Widget")
         .description("This is an example widget.")
-        .supportedFamilies([.systemMedium, .systemLarge])    }
+        .supportedFamilies([.systemMedium, .systemLarge])
+    }
+    
+    func clearCache() {
+        WidgetCenter.shared.reloadAllTimelines()
+    }
 }
 
 
