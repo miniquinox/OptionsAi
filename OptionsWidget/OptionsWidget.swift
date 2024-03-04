@@ -15,7 +15,8 @@ struct Option: Identifiable, Codable {
         return percentage > 50 ? "arrow.up.right" : "arrow.down.right"
     }
     var color: Color {
-        return percentage > 50 ? .green : .red
+        // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
+        return percentage > 50 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
     }
 }
 
@@ -47,10 +48,10 @@ func loadSampleDataSync() -> [OptionsData] {
     return result
 }
 
+
 func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
     let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
 
-    // Create a URL request that disables caching
     var request = URLRequest(url: url)
     request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
@@ -70,6 +71,17 @@ func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void
     task.resume()
 }
 
+// MARK: - View Extension for Background Compatibility
+extension View {
+    @ViewBuilder
+    func widgetBackground<T: View>(_ backgroundView: T) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            containerBackground(for: .widget) { backgroundView }
+        } else {
+            background(backgroundView)
+        }
+    }
+}
 
 // MARK: - Widget Entry
 struct SimpleEntry: TimelineEntry {
@@ -85,16 +97,14 @@ struct OptionsWidgetEntryView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Get the last element in the optionsData array
             if let lastOption = entry.optionsData.last {
                 HStack {
                     Text("OptionsAi")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                         .foregroundColor(colorScheme == .dark ? .white : .black)
-
-                    Text("-  \(lastOption.date)")
-                        .font(.system(size: 16)) // Adjust the font size here
+                    Text("- \(lastOption.date)")
+                        .font(.system(size: 16))
                         .fontWeight(.bold)
                         .foregroundColor(.gray)
                 }
@@ -104,35 +114,33 @@ struct OptionsWidgetEntryView: View {
                     ForEach(lastOption.options.indices, id: \.self) { optionIndex in
                         HStack {
                             Text(lastOption.options[optionIndex].id)
-                                .font(.system(size: 14))
+                                .font(.system(size: 16))
                                 .lineLimit(1)
                             Spacer()
                             Text("\(lastOption.options[optionIndex].percentage, specifier: "%.2f")%")
-                                .font(.system(size: 14))
+                                .font(.system(size: 16))
                                 .foregroundColor(.white)
                                 .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
-                                .background(lastOption.options[optionIndex].percentage > 50 ? Color.green : Color.red)
-                                .cornerRadius(5) // Less rounded corners
+                                .background(lastOption.options[optionIndex].percentage > 50 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255))
+                                .cornerRadius(5)
                         }
                         .padding(.horizontal, 5)
-                        .padding(.vertical, 4) // Add vertical padding to create space for the Divider
+                        .padding(.vertical, 4)
 
-                        // Grey spacer bar, conditionally added if not the last item
                         if optionIndex < lastOption.options.count - 1 {
                             Divider()
                                 .background(colorScheme == .dark ? .white : .gray)
-                                .padding(.leading, 5) // Left padding to align with the text
-                                .padding(.trailing, 5) // Right padding to align with the percentage boxes
-                                .padding(.vertical, 4) // Vertical padding to ensure the Divider is centered between options
+                                .padding(.horizontal, 5)
+                                .padding(.vertical, 4)
                         }
                     }
                 }
             }
         }
-        .background(colorScheme == .dark ? Color.black : Color.white) // Background color for the VStack
-        .cornerRadius(10) // Apply corner radius to VStack
-        .edgesIgnoringSafeArea(.all) // Extend to the edges of the widget
-        .padding(0) // Remove default padding
+        .widgetBackground(colorScheme == .dark ? Color.black : Color.white)
+        .cornerRadius(10)
+        .edgesIgnoringSafeArea(.all)
+        .padding(.horizontal) // Add horizontal padding
     }
 }
 
@@ -148,8 +156,7 @@ struct Provider: TimelineProvider {
             case .success(let optionsData):
                 let entry = SimpleEntry(date: Date(), optionsData: optionsData)
                 completion(entry)
-            case .failure(let error):
-                print(error)
+            case .failure(_):
                 let entry = SimpleEntry(date: Date(), optionsData: [])
                 completion(entry)
             }
@@ -158,21 +165,19 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         loadSampleData { result in
+            let currentDate = Date()
+            let refreshDate = Calendar.current.date(byAdding: .second, value: 10, to: currentDate)!
+            let entries: [SimpleEntry]
+            
             switch result {
             case .success(let optionsData):
-                let currentDate = Date()
-                let refreshDate = Calendar.current.date(byAdding: .second, value: 10, to: currentDate)!
-                let entries = [SimpleEntry(date: currentDate, optionsData: optionsData)]
-                let timeline = Timeline(entries: entries, policy: .after(refreshDate))
-                completion(timeline)
-            case .failure(let error):
-                print(error)
-                let currentDate = Date()
-                let refreshDate = Calendar.current.date(byAdding: .second, value: 10, to: currentDate)!
-                let entries = [SimpleEntry(date: currentDate, optionsData: [])]
-                let timeline = Timeline(entries: entries, policy: .after(refreshDate))
-                completion(timeline)
+                entries = [SimpleEntry(date: currentDate, optionsData: optionsData)]
+            case .failure(_):
+                entries = [SimpleEntry(date: currentDate, optionsData: [])]
             }
+            
+            let timeline = Timeline(entries: entries, policy: .after(refreshDate))
+            completion(timeline)
         }
     }
 }
@@ -187,10 +192,7 @@ struct OptionsWidget: Widget {
         .configurationDisplayName("Options Widget")
         .description("This is an example widget.")
         .supportedFamilies([.systemMedium, .systemLarge])
-    }
-    
-    func clearCache() {
-        WidgetCenter.shared.reloadAllTimelines()
+        .contentMarginsDisabled() // Disable content margins for iOS 17
     }
 }
 
