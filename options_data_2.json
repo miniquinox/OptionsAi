@@ -55,9 +55,9 @@
         "options": [
             {
                 "id": "SMCI $1040.0 Call 2024-03-08",
-                "percentage": 96.415770609319
+                "percentage": 0
                 "id": "MSTR $1200.0 Call 2024-03-08",
-                "percentage": 82.1637682425937
+                "percentage": 0
             }
         ]
     }
