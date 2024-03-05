@@ -109,6 +109,7 @@ struct OptionsWidgetEntryView: View {
                         .foregroundColor(.gray)
                 }
                 .padding(.vertical, 2)
+                .padding(.top) // Add padding to the top of the HStack
 
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(lastOption.options.indices, id: \.self) { optionIndex in
@@ -135,6 +136,7 @@ struct OptionsWidgetEntryView: View {
                         }
                     }
                 }
+                Spacer() // This pushes the above views to the top
             }
         }
         .widgetBackground(colorScheme == .dark ? Color.black : Color.white)
