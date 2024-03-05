@@ -1,56 +1,5 @@
 [
     {
-        "date": "2024-03-01",
-        "options": [
-            {
-                "id": "AAPL $120.0 Call 2024-03-01",
-                "percentage": 65.34
-            },
-            {
-                "id": "NVDA $105.0 Call 2024-03-01",
-                "percentage": 33.68
-            },
-            {
-                "id": "QUINO $105.0 Call 2024-03-01",
-                "percentage": 54.68
-            }
-        ]
-    },
-    {
-        "date": "2024-03-02",
-        "options": [
-            {
-                "id": "AAPL $125.0 Call 2024-03-02",
-                "percentage": 62.12
-            },
-            {
-                "id": "NVDA $110.0 Call 2024-03-02",
-                "percentage": 38.47
-            },
-            {
-                "id": "QUINO $110.0 Call 2024-03-02",
-                "percentage": 51.23
-            }
-        ]
-    },
-    {
-        "date": "2024-03-03",
-        "options": [
-            {
-                "id": "AAPL $130.0 Call 2024-03-03",
-                "percentage": 67.89
-            },
-            {
-                "id": "NVDA $115.0 Call 2024-03-03",
-                "percentage": 35.74
-            },
-            {
-                "id": "QUINO $115.0 Call 2024-03-03",
-                "percentage": 59.99
-            }
-        ]
-    },
-    {
         "date": "2024-03-04",
         "options": [
             {
@@ -60,6 +9,15 @@
             {
                 "id": "MSTR $1200.0 Call 2024-03-08",
                 "percentage": 82.16
+            }
+        ]
+    },
+    {
+        "date": "2024-03-05",
+        "options": [
+            {
+                "id": "TGT $165.0 Call 2024-03-08",
+                "percentage": 43.06
             }
         ]
     }
