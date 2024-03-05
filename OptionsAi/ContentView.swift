@@ -55,13 +55,26 @@ struct ContentView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationTitle("OptionsAi")
+            .navigationBarTitle("OptionsAi")
+            .navigationBarItems(trailing: Button(action: {
+                loadSampleData { result in
+                    switch result {
+                    case .success(let data):
+                        // Handle the loaded data
+                        print("Data loaded successfully: \(data)")
+                    case .failure(let error):
+                        // Handle the error
+                        print("Error loading data: \(error)")
+                    }
+                }
+                }, label: {
+                Image(systemName: "arrow.clockwise")
+            }))
             .onAppear {
                 loadData()
             }
         }
     }
-
 
     private func loadData() {
         loadSampleData { result in
@@ -77,27 +90,28 @@ struct ContentView: View {
     }
 
     func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
-    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
+        let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
 
-    // Create a URL request that disables caching
-    var request = URLRequest(url: url)
-    request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        // Create a URL request that disables caching
+        var request = URLRequest(url: url)
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        if let error = error {
-            completion(.failure(error))
-        } else if let data = data {
-            do {
-                let decoder = JSONDecoder()
-                let optionsData = try decoder.decode([OptionsData].self, from: data)
-                completion(.success(optionsData))
-            } catch {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
                 completion(.failure(error))
+            } else if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    var optionsData = try decoder.decode([OptionsData].self, from: data)
+                    optionsData.reverse() // Reverse the order of the data
+                    completion(.success(optionsData))
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
+        task.resume()
     }
-    task.resume()
-}
 
     private func color(for percentage: Double) -> Color {
         // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
