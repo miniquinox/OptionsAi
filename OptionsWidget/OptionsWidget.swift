@@ -12,11 +12,11 @@ struct Option: Identifiable, Codable {
     let id: String
     let percentage: Double
     var symbol: String {
-        return percentage > 50 ? "arrow.up.right" : "arrow.down.right"
+        return percentage > 40 ? "arrow.up.right" : "arrow.down.right"
     }
     var color: Color {
         // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
-        return percentage > 50 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
+        return percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
     }
 }
 
@@ -122,7 +122,7 @@ struct OptionsWidgetEntryView: View {
                                 .font(.system(size: 16))
                                 .foregroundColor(.white)
                                 .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
-                                .background(lastOption.options[optionIndex].percentage > 50 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255))
+                                .background(lastOption.options[optionIndex].percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255))
                                 .cornerRadius(5)
                         }
                         .padding(.horizontal, 5)

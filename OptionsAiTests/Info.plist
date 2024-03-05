@@ -6,10 +6,5 @@
 	<false/>
 	<key>LSMinimumSystemVersion</key>
 	<string>14.4</string>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.widgetkit-extension</string>
-	</dict>
 </dict>
 </plist>

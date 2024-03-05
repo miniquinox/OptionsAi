@@ -12,10 +12,10 @@ struct Option: Identifiable, Codable {
     let id: String
     let percentage: Double
     var symbol: String {
-        return percentage > 50 ? "arrow.up.right" : "arrow.down.right"
+        return percentage > 40 ? "arrow.up.right" : "arrow.down.right"
     }
     var color: Color {
-        return percentage > 50 ? .green : .red
+        return percentage > 40 ? .green : .red
     }
 }
 
@@ -115,12 +115,12 @@ struct ContentView: View {
 
     private func color(for percentage: Double) -> Color {
         // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
-        return percentage > 50 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
+        return percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
     }
 
     private func background(for percentage: Double) -> Color {
         // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
-        percentage > 50 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
+        percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
     }
 }
 

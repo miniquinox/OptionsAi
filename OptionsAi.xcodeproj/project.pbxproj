@@ -62,6 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D4E3F04F2B97C08500A28D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D4E3F0502B97C08E00A28D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D4E3F0512B97C09700A28D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D4E45E492B950E5A0063D223 /* OptionsAi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptionsAi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E45E4C2B950E5A0063D223 /* OptionsAiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsAiApp.swift; sourceTree = "<group>"; };
 		D4E45E4E2B950E5A0063D223 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		D4E45E4B2B950E5A0063D223 /* OptionsAi */ = {
 			isa = PBXGroup;
 			children = (
+				D4E3F04F2B97C08500A28D13 /* Info.plist */,
 				D4E45E4C2B950E5A0063D223 /* OptionsAiApp.swift */,
 				D4E45E4E2B950E5A0063D223 /* ContentView.swift */,
 				D4E45E502B950E5B0063D223 /* Assets.xcassets */,
@@ -161,6 +165,7 @@
 		D4E45E5C2B950E5B0063D223 /* OptionsAiTests */ = {
 			isa = PBXGroup;
 			children = (
+				D4E3F0502B97C08E00A28D13 /* Info.plist */,
 				D4E45E5D2B950E5B0063D223 /* OptionsAiTests.swift */,
 			);
 			path = OptionsAiTests;
@@ -169,6 +174,7 @@
 		D4E45E662B950E5B0063D223 /* OptionsAiUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D4E3F0512B97C09700A28D13 /* Info.plist */,
 				D4E45E672B950E5B0063D223 /* OptionsAiUITests.swift */,
 				D4E45E692B950E5B0063D223 /* OptionsAiUITestsLaunchTests.swift */,
 			);
@@ -541,6 +547,7 @@
 				DEVELOPMENT_TEAM = XDJRYXYA58;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OptionsAi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -571,6 +578,7 @@
 				DEVELOPMENT_TEAM = XDJRYXYA58;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OptionsAi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -598,6 +606,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XDJRYXYA58;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OptionsAiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimiz3d.OptionsAiTests;
@@ -618,6 +627,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XDJRYXYA58;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OptionsAiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimiz3d.OptionsAiTests;
@@ -637,6 +647,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XDJRYXYA58;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OptionsAiUITests/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimiz3d.OptionsAiUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -655,6 +666,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XDJRYXYA58;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OptionsAiUITests/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimiz3d.OptionsAiUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
