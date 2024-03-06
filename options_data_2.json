@@ -20,5 +20,18 @@
                 "percentage": 43.06
             }
         ]
+    },
+    {
+        "date": "2024-03-06",
+        "options": [
+            {
+                "id": "CRWD $362.5 Call 2024-03-08",
+                "percentage": 0
+            },
+            {
+                "id": "JD $25.0 Call 2024-03-08",
+                "percentage": 0
+            }
+        ]
     }
 ]
