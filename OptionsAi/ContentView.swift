@@ -55,19 +55,10 @@ struct ContentView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("OptionsAi")
+            .navigationBarTitle("QuinOptionsAi")
             .navigationBarItems(trailing: Button(action: {
-                loadSampleData { result in
-                    switch result {
-                    case .success(let data):
-                        // Handle the loaded data
-                        print("Data loaded successfully: \(data)")
-                    case .failure(let error):
-                        // Handle the error
-                        print("Error loading data: \(error)")
-                    }
-                }
-                }, label: {
+                loadData() // This calls your loadData function to refresh the data
+            }, label: {
                 Image(systemName: "arrow.clockwise")
             }))
             .onAppear {
@@ -90,23 +81,54 @@ struct ContentView: View {
     }
 
     func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
-        let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
+        let repo = "miniquinox/OptionsAi"
+        let filePath = "options_data_2.json"
+        let apiUrl = "https://api.github.com/repos/\(repo)/commits?path=\(filePath)&page=1&per_page=1"
+        let headers = ["Accept": "application/vnd.github.v3+json"]
 
-        // Create a URL request that disables caching
-        var request = URLRequest(url: url)
-        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        var request = URLRequest(url: URL(string: apiUrl)!)
+        request.allHTTPHeaderFields = headers
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             } else if let data = data {
                 do {
-                    let decoder = JSONDecoder()
-                    var optionsData = try decoder.decode([OptionsData].self, from: data)
-                    optionsData.reverse() // Reverse the order of the data
-                    completion(.success(optionsData))
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
+                       let latestCommitHash = json[0]["sha"] as? String {
+                        let rawUrl = "https://raw.githubusercontent.com/\(repo)/\(latestCommitHash)/\(filePath)"
+                        let fileRequest = URLRequest(url: URL(string: rawUrl)!)
+
+                        let fileTask = URLSession.shared.dataTask(with: fileRequest) { (fileData, fileResponse, fileError) in
+                            if let fileError = fileError {
+                                DispatchQueue.main.async {
+                                    completion(.failure(fileError))
+                                }
+                            } else if let fileData = fileData {
+                                do {
+                                    let decoder = JSONDecoder()
+                                    var optionsData = try decoder.decode([OptionsData].self, from: fileData)
+                                    optionsData.reverse() // Reverse the order of the data
+                                    print(optionsData)
+
+                                    DispatchQueue.main.async {
+                                        completion(.success(optionsData))
+                                    }
+                                } catch {
+                                    DispatchQueue.main.async {
+                                        completion(.failure(error))
+                                    }
+                                }
+                            }
+                        }
+                        fileTask.resume()
+                    }
                 } catch {
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
         }

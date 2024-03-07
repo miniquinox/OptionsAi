@@ -22,8 +22,13 @@ struct Option: Identifiable, Codable {
 
 // MARK: - Data Provider Function
 func loadSampleDataSync() -> [OptionsData] {
-    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
-    var request = URLRequest(url: url)
+    let repo = "miniquinox/OptionsAi"
+    let filePath = "options_data_2.json"
+    let apiUrl = "https://api.github.com/repos/\(repo)/commits?path=\(filePath)&page=1&per_page=1"
+    let headers = ["Accept": "application/vnd.github.v3+json"]
+
+    var request = URLRequest(url: URL(string: apiUrl)!)
+    request.allHTTPHeaderFields = headers
     request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
     let semaphore = DispatchSemaphore(value: 0)
@@ -32,15 +37,36 @@ func loadSampleDataSync() -> [OptionsData] {
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let data = data {
             do {
-                let decoder = JSONDecoder()
-                result = try decoder.decode([OptionsData].self, from: data)
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
+                   let latestCommitHash = json[0]["sha"] as? String {
+                    let rawUrl = "https://raw.githubusercontent.com/\(repo)/\(latestCommitHash)/\(filePath)"
+                    let fileRequest = URLRequest(url: URL(string: rawUrl)!)
+
+                    let fileTask = URLSession.shared.dataTask(with: fileRequest) { (fileData, fileResponse, fileError) in
+                        if let fileData = fileData {
+                            do {
+                                let decoder = JSONDecoder()
+                                result = try decoder.decode([OptionsData].self, from: fileData)
+                                semaphore.signal()
+                            } catch {
+                                print("Failed to decode JSON: \(error)")
+                                semaphore.signal()
+                            }
+                        } else if let fileError = fileError {
+                            print("Failed to load data: \(fileError)")
+                            semaphore.signal()
+                        }
+                    }
+                    fileTask.resume()
+                }
             } catch {
                 print("Failed to decode JSON: \(error)")
+                semaphore.signal()
             }
         } else if let error = error {
             print("Failed to load data: \(error)")
+            semaphore.signal()
         }
-        semaphore.signal()
     }
     task.resume()
 
@@ -50,9 +76,13 @@ func loadSampleDataSync() -> [OptionsData] {
 
 
 func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
-    let url = URL(string: "https://raw.githubusercontent.com/miniquinox/OptionsAi/main/options_data_2.json")!
+    let repo = "miniquinox/OptionsAi"
+    let filePath = "options_data_2.json"
+    let apiUrl = "https://api.github.com/repos/\(repo)/commits?path=\(filePath)&page=1&per_page=1"
+    let headers = ["Accept": "application/vnd.github.v3+json"]
 
-    var request = URLRequest(url: url)
+    var request = URLRequest(url: URL(string: apiUrl)!)
+    request.allHTTPHeaderFields = headers
     request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -60,9 +90,26 @@ func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void
             completion(.failure(error))
         } else if let data = data {
             do {
-                let decoder = JSONDecoder()
-                let optionsData = try decoder.decode([OptionsData].self, from: data)
-                completion(.success(optionsData))
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
+                   let latestCommitHash = json[0]["sha"] as? String {
+                    let rawUrl = "https://raw.githubusercontent.com/\(repo)/\(latestCommitHash)/\(filePath)"
+                    let fileRequest = URLRequest(url: URL(string: rawUrl)!)
+
+                    let fileTask = URLSession.shared.dataTask(with: fileRequest) { (fileData, fileResponse, fileError) in
+                        if let fileError = fileError {
+                            completion(.failure(fileError))
+                        } else if let fileData = fileData {
+                            do {
+                                let decoder = JSONDecoder()
+                                let optionsData = try decoder.decode([OptionsData].self, from: fileData)
+                                completion(.success(optionsData))
+                            } catch {
+                                completion(.failure(error))
+                            }
+                        }
+                    }
+                    fileTask.resume()
+                }
             } catch {
                 completion(.failure(error))
             }
@@ -99,7 +146,7 @@ struct OptionsWidgetEntryView: View {
         VStack(alignment: .leading, spacing: 0) {
             if let lastOption = entry.optionsData.last {
                 HStack {
-                    Text("OptionsAi")
+                    Text("QuinOptionsAi")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                         .foregroundColor(colorScheme == .dark ? .white : .black)
