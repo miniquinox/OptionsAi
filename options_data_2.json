@@ -39,7 +39,7 @@
         "options": [
             {
                 "id": "AEO $26.5 Call 2024-03-08",
-                "percentage": 81.40
+                "percentage": 81.4
             },
             {
                 "id": "CC $26.0 Call 2024-03-08",
@@ -53,6 +53,15 @@
             {
                 "id": "IOT $38.5 Call 2024-03-08",
                 "percentage": 50.0
+            }
+        ]
+    },
+    {
+        "date": "2024-03-11",
+        "options": [
+            {
+                "id": "AS $15.0 Call 2024-03-15",
+                "percentage": 0
             }
         ]
     }
