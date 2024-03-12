@@ -1,5 +1,35 @@
 [
     {
+        "date": "2024-02-29",
+        "options": [
+            {
+                "id": "HRL $34.0 Call 2024-03-01",
+                "percentage": 28.15
+            },
+            {
+                "id": "OKTA $107.0 Call 2024-03-01",
+                "percentage": 94.01
+            },
+            {
+                "id": "AI $35.5 Call 2024-03-01",
+                "percentage": 63.04
+            }
+        ]
+    },
+    {
+        "date": "2024-03-01",
+        "options": [
+            {
+                "id": "DELL $120.0 Call 2024-03-01",
+                "percentage": 77.78
+            },
+            {
+                "id": "NTAP $105.0 Call 2024-03-01",
+                "percentage": 67.90
+            }
+        ]
+    },
+    {
         "date": "2024-03-04",
         "options": [
             {
