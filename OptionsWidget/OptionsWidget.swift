@@ -158,32 +158,44 @@ struct OptionsWidgetEntryView: View {
                 .padding(.vertical, 2)
                 .padding(.top) // Add padding to the top of the HStack
 
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(lastOption.options.indices, id: \.self) { optionIndex in
-                        HStack {
-                            Text(lastOption.options[optionIndex].id)
-                                .font(.system(size: 16))
-                                .lineLimit(1)
-                            Spacer()
-                            Text("\(lastOption.options[optionIndex].percentage, specifier: "%.2f")%")
-                                .font(.system(size: 16))
-                                .foregroundColor(.white)
-                                .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
-                                .background(lastOption.options[optionIndex].percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255))
-                                .cornerRadius(5)
-                        }
-                        .padding(.horizontal, 5)
-                        .padding(.vertical, 4)
+                if lastOption.options.isEmpty {
+                    HStack {
+                        Text("No Option Picks Today")
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                        Spacer() // This pushes the above views to the left
+                    }
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 4)
+                    Spacer() // This pushes the above views to the top
 
-                        if optionIndex < lastOption.options.count - 1 {
-                            Divider()
-                                .background(colorScheme == .dark ? .white : .gray)
-                                .padding(.horizontal, 5)
-                                .padding(.vertical, 4)
+                } else {
+                    VStack(alignment: .leading, spacing: 0) {
+                        ForEach(lastOption.options.indices, id: \.self) { optionIndex in
+                            HStack {
+                                Text(lastOption.options[optionIndex].id)
+                                    .font(.system(size: 16))
+                                    .lineLimit(1)
+                                Spacer()
+                                Text("\(lastOption.options[optionIndex].percentage, specifier: "%.2f")%")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+                                    .background(lastOption.options[optionIndex].percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255))
+                                    .cornerRadius(5)
+                            }
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 4)
+
+                            if optionIndex < lastOption.options.count - 1 {
+                                Divider()
+                                    .background(colorScheme == .dark ? .white : .gray)
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 4)
+                            }
                         }
                     }
+                    Spacer() // This pushes the above views to the top
                 }
-                Spacer() // This pushes the above views to the top
             }
         }
         .widgetBackground(colorScheme == .dark ? Color.black : Color.white)

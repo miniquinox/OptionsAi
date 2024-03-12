@@ -12,10 +12,10 @@ struct Option: Identifiable, Codable {
     let id: String
     let percentage: Double
     var symbol: String {
-        return percentage > 40 ? "arrow.up.right" : "arrow.down.right"
+        return percentage > 30 ? "arrow.up.right" : "arrow.down.right"
     }
     var color: Color {
-        return percentage > 40 ? .green : .red
+        return percentage > 30 ? .green : .red
     }
 }
 
@@ -34,17 +34,23 @@ struct ContentView: View {
                             .foregroundColor(colorScheme == .dark ? .white : .black)
                             .padding(.bottom, 5)
                         
-                        ForEach(dailyOptions.options) { option in
-                            HStack {
-                                Text(option.id)
-                                    .lineLimit(1)
-                                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                                Spacer()
-                                Text("\(option.percentage, specifier: "%.2f")%")
-                                    .foregroundColor(.white)
-                                    .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
-                                    .background(background(for: option.percentage))
-                                    .cornerRadius(5)
+                        if dailyOptions.options.isEmpty {
+                            Text("No Option Picks Today")
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+
+                        } else {
+                            ForEach(dailyOptions.options) { option in
+                                HStack {
+                                    Text(option.id)
+                                        .lineLimit(1)
+                                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                                    Spacer()
+                                    Text("\(option.percentage, specifier: "%.2f")%")
+                                        .foregroundColor(.white)
+                                        .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+                                        .background(background(for: option.percentage))
+                                        .cornerRadius(5)
+                                }
                             }
                         }
                     }
@@ -82,7 +88,7 @@ struct ContentView: View {
 
     func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
         let repo = "miniquinox/OptionsAi"
-        let filePath = "options_data_2.json"
+        let filePath = "options_data_1.json"
         let apiUrl = "https://api.github.com/repos/\(repo)/commits?path=\(filePath)&page=1&per_page=1"
         let headers = ["Accept": "application/vnd.github.v3+json"]
 
@@ -137,12 +143,12 @@ struct ContentView: View {
 
     private func color(for percentage: Double) -> Color {
         // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
-        return percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
+        return percentage > 30 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
     }
 
     private func background(for percentage: Double) -> Color {
         // use red with rgb: 251, 55, 5, and green with rgb: 25, 194, 6
-        percentage > 40 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
+        percentage > 30 ? Color(red: 25/255, green: 194/255, blue: 6/255) : Color(red: 251/255, green: 55/255, blue: 5/255)
     }
 }
 
