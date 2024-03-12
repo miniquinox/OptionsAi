@@ -88,7 +88,7 @@ struct ContentView: View {
 
     func loadSampleData(completion: @escaping (Result<[OptionsData], Error>) -> Void) {
         let repo = "miniquinox/OptionsAi"
-        let filePath = "options_data_1.json"
+        let filePath = "options_data_2.json"
         let apiUrl = "https://api.github.com/repos/\(repo)/commits?path=\(filePath)&page=1&per_page=1"
         let headers = ["Accept": "application/vnd.github.v3+json"]
 
