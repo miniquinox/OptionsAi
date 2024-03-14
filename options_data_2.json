@@ -25,7 +25,7 @@
             },
             {
                 "id": "NTAP $105.0 Call 2024-03-01",
-                "percentage": 67.90
+                "percentage": 67.9
             }
         ]
     },
@@ -105,6 +105,19 @@
             {
                 "id": "HCM $17.50 Call 2024-03-15",
                 "percentage": 18400.0
+            }
+        ]
+    },
+    {
+        "date": "2024-03-14",
+        "options": [
+            {
+                "id": "HOOD $19.5 Call 2024-03-15",
+                "percentage": 0
+            },
+            {
+                "id": "SOUN $9.5 Call 2024-03-15",
+                "percentage": 0
             }
         ]
     }
