@@ -120,5 +120,18 @@
                 "percentage": 45.63
             }
         ]
+    },
+    {
+        "date": "2024-03-15",
+        "options": [
+            {
+                "id": "MDGL $300.0 Call 2024-03-15",
+                "percentage": 0
+            },
+            {
+                "id": "RLX $2.0 Call 2024-03-15",
+                "percentage": 0
+            }
+        ]
     }
 ]
