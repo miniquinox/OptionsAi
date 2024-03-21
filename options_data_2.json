@@ -153,6 +153,19 @@
     },
     {
         "date": "2024-03-21",
-        "options": []
+        "options": [
+            {
+                "id": "MU $112.0 Call 2024-03-22",
+                "percentage": 0.00
+            },
+            {
+                "id": "WDC $65.0 Call 2024-03-22",
+                "percentage": 0.00
+            },
+            {
+                "id": "IMVT $36.0 Call 2024-03-22",
+                "percentage": 0.00
+            }
+        ]
     }
 ]
