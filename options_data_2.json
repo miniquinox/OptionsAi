@@ -178,15 +178,19 @@
         "options": [
             {
                 "id": "LCID $3.0 Call 2024-03-28",
-                "percentage": 40.0
+                "percentage": 45.0
             },
             {
                 "id": "LCID $3.0 Call 2024-03-28",
-                "percentage": 40.0
+                "percentage": 45.0
             },
             {
                 "id": "LCID $3.0 Call 2024-03-28",
-                "percentage": 40.0
+                "percentage": 45.0
+            },
+            {
+                "id": "LCID $3.0 Call 2024-03-28",
+                "percentage": 45.0
             }
         ]
     }
