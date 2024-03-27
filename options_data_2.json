@@ -242,5 +242,18 @@
                 "percentage": 77.08
             }
         ]
+    },
+    {
+        "date": "2024-03-27",
+        "options": [
+            {
+                "id": "HOOD $21.0 Call 2024-03-28",
+                "percentage": 0
+            },
+            {
+                "id": "DJT $70.0 Call 2024-03-28",
+                "percentage": 0
+            }
+        ]
     }
 ]
