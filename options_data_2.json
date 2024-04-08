@@ -237,5 +237,18 @@
     {
         "date": "2024-04-05",
         "options": []
+    },
+    {
+        "date": "2024-04-08",
+        "options": [
+            {
+                "id": "MSTR $1595.0 Call 2024-04-12",
+                "percentage": 0
+            },
+            {
+                "id": "CLSK $17.0 Call 2024-04-12",
+                "percentage": 0
+            }
+        ]
     }
 ]
