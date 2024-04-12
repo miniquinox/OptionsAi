@@ -267,5 +267,22 @@
     {
         "date": "2024-04-11",
         "options": []
+    },
+    {
+        "date": "2024-04-12",
+        "options": [
+            {
+                "id": "CPNG $20.5 Call 2024-04-12",
+                "percentage": 0
+            },
+            {
+                "id": "TKR $95.0 Call 2024-04-19",
+                "percentage": 0
+            },
+            {
+                "id": "GL $105.0 Call 2024-04-19",
+                "percentage": 0
+            }
+        ]
     }
 ]
