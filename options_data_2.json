@@ -343,5 +343,30 @@
                 "percentage": 0
             }
         ]
+    },
+    {
+        "date": "2024-04-19",
+        "options": [
+            {
+                "id": "HSIC $75.0 Call 2024-04-19",
+                "percentage": 0
+            },
+            {
+                "id": "PARA $12.0 Call 2024-04-19",
+                "percentage": 0
+            },
+            {
+                "id": "DJT $37.0 Call 2024-04-19",
+                "percentage": 0
+            },
+            {
+                "id": "BHVN $45.0 Call 2024-04-19",
+                "percentage": 0
+            },
+            {
+                "id": "CNS $70.0 Call 2024-04-19",
+                "percentage": 0
+            }
+        ]
     }
 ]
