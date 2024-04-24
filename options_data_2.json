@@ -4163,7 +4163,7 @@
         "options": [
             {
                 "id": "TSLA $162.5 Call 2024-04-26",
-                "percentage": 101.83
+                "percentage": 110.62
             },
             {
                 "id": "VRT $92.0 Call 2024-04-26",
@@ -4179,11 +4179,15 @@
             },
             {
                 "id": "TSLA $162.5 Call 2024-04-26",
-                "percentage": 101.83
+                "percentage": 110.62
             },
             {
                 "id": "TSLA $162.5 Call 2024-04-26",
-                "percentage": 101.83
+                "percentage": 110.62
+            },
+            {
+                "id": "TSLA $162.5 Call 2024-04-26",
+                "percentage": 110.62
             }
         ]
     }
