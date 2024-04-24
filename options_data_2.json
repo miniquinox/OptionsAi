@@ -4175,7 +4175,7 @@
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 18.42
+                "percentage": 26.32
             },
             {
                 "id": "TSLA $162.5 Call 2024-04-26",
@@ -4239,7 +4239,11 @@
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 18.42
+                "percentage": 26.32
+            },
+            {
+                "id": "BILI $12.5 Call 2024-04-26",
+                "percentage": 26.32
             }
         ]
     }
