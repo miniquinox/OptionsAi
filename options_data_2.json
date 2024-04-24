@@ -4171,11 +4171,11 @@
             },
             {
                 "id": "VFS $2.5 Call 2024-04-26",
-                "percentage": 44.44
+                "percentage": 66.67
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 36.84
+                "percentage": 42.11
             },
             {
                 "id": "TSLA $162.5 Call 2024-04-26",
@@ -4239,27 +4239,35 @@
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 36.84
+                "percentage": 42.11
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 36.84
+                "percentage": 42.11
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 36.84
+                "percentage": 42.11
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 36.84
+                "percentage": 42.11
             },
             {
                 "id": "VFS $2.5 Call 2024-04-26",
-                "percentage": 44.44
+                "percentage": 66.67
             },
             {
                 "id": "BILI $12.5 Call 2024-04-26",
-                "percentage": 36.84
+                "percentage": 42.11
+            },
+            {
+                "id": "VFS $2.5 Call 2024-04-26",
+                "percentage": 66.67
+            },
+            {
+                "id": "BILI $12.5 Call 2024-04-26",
+                "percentage": 42.11
             }
         ]
     }
