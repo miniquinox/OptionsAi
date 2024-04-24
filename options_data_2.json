@@ -4157,5 +4157,26 @@
     {
         "date": "2024-04-23",
         "options": []
+    },
+    {
+        "date": "2024-04-24",
+        "options": [
+            {
+                "id": "TSLA $162.5 Call 2024-04-26",
+                "percentage": 0
+            },
+            {
+                "id": "VRT $92.0 Call 2024-04-26",
+                "percentage": 0
+            },
+            {
+                "id": "VFS $2.5 Call 2024-04-26",
+                "percentage": 0
+            },
+            {
+                "id": "BILI $12.5 Call 2024-04-26",
+                "percentage": 0
+            }
+        ]
     }
 ]
