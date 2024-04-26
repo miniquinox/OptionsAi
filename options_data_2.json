@@ -4278,5 +4278,22 @@
     {
         "date": "2024-04-25",
         "options": []
+    },
+    {
+        "date": "2024-04-26",
+        "options": [
+            {
+                "id": "LI $25.5 Call 2024-04-26",
+                "percentage": 0
+            },
+            {
+                "id": "SNAP $14.5 Call 2024-04-26",
+                "percentage": 0
+            },
+            {
+                "id": "XPEV $7.5 Call 2024-04-26",
+                "percentage": 0
+            }
+        ]
     }
 ]
