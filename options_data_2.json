@@ -4305,7 +4305,7 @@
             },
             {
                 "id": "IBRX $8.0 Call 2024-05-03",
-                "percentage": 25.93
+                "percentage": 33.33
             },
             {
                 "id": "TSLA $190.0 Call 2024-05-03",
@@ -4338,6 +4338,10 @@
             {
                 "id": "TSLA $190.0 Call 2024-05-03",
                 "percentage": 20.18
+            },
+            {
+                "id": "IBRX $8.0 Call 2024-05-03",
+                "percentage": 33.33
             }
         ]
     }
