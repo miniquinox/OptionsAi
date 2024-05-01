@@ -4602,7 +4602,7 @@
         "options": [
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
             },
             {
                 "id": "DJT $54.0 Call 2024-05-03",
@@ -4622,19 +4622,19 @@
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
@@ -4650,11 +4650,15 @@
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 62.5
+                "percentage": 72.92
+            },
+            {
+                "id": "PINS $38.5 Call 2024-05-03",
+                "percentage": 72.92
             }
         ]
     }
