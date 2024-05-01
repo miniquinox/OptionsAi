@@ -4602,7 +4602,7 @@
         "options": [
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 30.21
+                "percentage": 36.46
             },
             {
                 "id": "DJT $54.0 Call 2024-05-03",
@@ -4622,11 +4622,15 @@
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 30.21
+                "percentage": 36.46
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 30.21
+                "percentage": 36.46
+            },
+            {
+                "id": "PINS $38.5 Call 2024-05-03",
+                "percentage": 36.46
             }
         ]
     }
