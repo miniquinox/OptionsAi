@@ -4596,5 +4596,30 @@
     {
         "date": "2024-04-30",
         "options": []
+    },
+    {
+        "date": "2024-05-01",
+        "options": [
+            {
+                "id": "PINS $38.5 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "DJT $54.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "UEC $7.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "NYCB $3.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "TGTX $17.0 Call 2024-05-03",
+                "percentage": 0
+            }
+        ]
     }
 ]
