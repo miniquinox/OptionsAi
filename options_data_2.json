@@ -4614,7 +4614,7 @@
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 84.62
+                "percentage": 92.31
             },
             {
                 "id": "TGTX $17.0 Call 2024-05-03",
@@ -4638,7 +4638,11 @@
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 84.62
+                "percentage": 92.31
+            },
+            {
+                "id": "NYCB $3.0 Call 2024-05-03",
+                "percentage": 92.31
             }
         ]
     }
