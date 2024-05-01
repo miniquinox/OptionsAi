@@ -4602,7 +4602,7 @@
         "options": [
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 11.46
+                "percentage": 26.04
             },
             {
                 "id": "DJT $54.0 Call 2024-05-03",
@@ -4619,6 +4619,10 @@
             {
                 "id": "TGTX $17.0 Call 2024-05-03",
                 "percentage": 36.36
+            },
+            {
+                "id": "PINS $38.5 Call 2024-05-03",
+                "percentage": 26.04
             }
         ]
     }
