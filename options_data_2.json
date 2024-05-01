@@ -4602,23 +4602,23 @@
         "options": [
             {
                 "id": "PINS $38.5 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 11.46
             },
             {
                 "id": "DJT $54.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 18.34
             },
             {
                 "id": "UEC $7.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 14.58
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 53.85
             },
             {
                 "id": "TGTX $17.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 36.36
             }
         ]
     }
