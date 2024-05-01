@@ -4614,7 +4614,7 @@
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 169.23
+                "percentage": 207.69
             },
             {
                 "id": "TGTX $17.0 Call 2024-05-03",
@@ -4638,15 +4638,15 @@
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 169.23
+                "percentage": 207.69
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 169.23
+                "percentage": 207.69
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 169.23
+                "percentage": 207.69
             },
             {
                 "id": "PINS $38.5 Call 2024-05-03",
@@ -4666,7 +4666,11 @@
             },
             {
                 "id": "NYCB $3.0 Call 2024-05-03",
-                "percentage": 169.23
+                "percentage": 207.69
+            },
+            {
+                "id": "NYCB $3.0 Call 2024-05-03",
+                "percentage": 207.69
             }
         ]
     }
