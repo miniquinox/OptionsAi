@@ -4730,64 +4730,16 @@
         "date": "2024-05-02",
         "options": [
             {
-                "id": "CVNA $120.0 Call 2024-05-03",
-                "percentage": 45.99
-            },
-            {
-                "id": "MGM $43.0 Call 2024-05-03",
-                "percentage": 58.9
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 82.35
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 76.47
-            },
-            {
-                "id": "W $59.0 Call 2024-05-03",
-                "percentage": 36.67
-            },
-            {
-                "id": "CAR $109.0 Call 2024-05-03",
-                "percentage": 49.59
-            },
-            {
-                "id": "CAR $109.0 Call 2024-05-03",
-                "percentage": 49.59
-            },
-            {
-                "id": "BILI $13.5 Call 2024-05-03",
-                "percentage": 50.0
-            },
-            {
-                "id": "BILI $13.5 Call 2024-05-03",
-                "percentage": 50.0
-            },
-            {
-                "id": "BILI $13.5 Call 2024-05-03",
-                "percentage": 50.0
-            },
-            {
-                "id": "BILI $13.5 Call 2024-05-03",
-                "percentage": 50.0
-            },
-            {
-                "id": "BILI $13.5 Call 2024-05-03",
-                "percentage": 50.0
-            },
-            {
-                "id": "CAR $109.0 Call 2024-05-03",
-                "percentage": 49.59
-            },
-            {
-                "id": "BILI $13.5 Call 2024-05-03",
-                "percentage": 50.0
+                "percentage": 82.35
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 76.47
-            },
-            {
-                "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 76.47
+                "percentage": 82.35
             }
         ]
     }
