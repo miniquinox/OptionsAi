@@ -4731,15 +4731,27 @@
         "options": [
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 82.35
+                "percentage": 100.0
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 82.35
+                "percentage": 100.0
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 82.35
+                "percentage": 100.0
+            },
+            {
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 100.0
+            },
+            {
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 100.0
+            },
+            {
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 100.0
             }
         ]
     }
