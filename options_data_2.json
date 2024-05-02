@@ -4739,7 +4739,7 @@
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 64.71
+                "percentage": 70.59
             },
             {
                 "id": "W $59.0 Call 2024-05-03",
@@ -4780,6 +4780,10 @@
             {
                 "id": "BILI $13.5 Call 2024-05-03",
                 "percentage": 50.0
+            },
+            {
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 70.59
             }
         ]
     }
