@@ -4747,11 +4747,11 @@
             },
             {
                 "id": "CAR $109.0 Call 2024-05-03",
-                "percentage": 13.01
+                "percentage": 49.59
             },
             {
                 "id": "CAR $109.0 Call 2024-05-03",
-                "percentage": 13.01
+                "percentage": 49.59
             },
             {
                 "id": "BILI $13.5 Call 2024-05-03",
@@ -4772,6 +4772,10 @@
             {
                 "id": "BILI $13.5 Call 2024-05-03",
                 "percentage": 15.28
+            },
+            {
+                "id": "CAR $109.0 Call 2024-05-03",
+                "percentage": 49.59
             }
         ]
     }
