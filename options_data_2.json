@@ -4739,7 +4739,7 @@
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 70.59
+                "percentage": 76.47
             },
             {
                 "id": "W $59.0 Call 2024-05-03",
@@ -4783,7 +4783,11 @@
             },
             {
                 "id": "XPEV $9.0 Call 2024-05-03",
-                "percentage": 70.59
+                "percentage": 76.47
+            },
+            {
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 76.47
             }
         ]
     }
