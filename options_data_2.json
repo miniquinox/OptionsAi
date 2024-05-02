@@ -4725,5 +4725,34 @@
                 "percentage": 164.58
             }
         ]
+    },
+    {
+        "date": "2024-05-02",
+        "options": [
+            {
+                "id": "CVNA $120.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "MGM $43.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "XPEV $9.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "W $59.0 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "BILI $13.5 Call 2024-05-03",
+                "percentage": 0
+            },
+            {
+                "id": "CAR $109.0 Call 2024-05-03",
+                "percentage": 0
+            }
+        ]
     }
 ]
