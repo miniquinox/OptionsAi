@@ -4952,19 +4952,19 @@
         "options": [
             {
                 "id": "AMGN $312.5 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 106.75
             },
             {
                 "id": "SQ $77.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 310.0
             },
             {
                 "id": "MSTR $1210.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 65.67
             },
             {
                 "id": "BILL $68.0 Call 2024-05-03",
-                "percentage": 0
+                "percentage": 100.0
             }
         ]
     }
