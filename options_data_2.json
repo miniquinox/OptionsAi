@@ -4960,11 +4960,15 @@
             },
             {
                 "id": "MSTR $1210.0 Call 2024-05-03",
-                "percentage": 65.67
+                "percentage": 81.76
             },
             {
                 "id": "BILL $68.0 Call 2024-05-03",
                 "percentage": 100.0
+            },
+            {
+                "id": "MSTR $1210.0 Call 2024-05-03",
+                "percentage": 81.76
             }
         ]
     }
