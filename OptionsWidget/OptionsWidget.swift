@@ -146,7 +146,7 @@ struct OptionsWidgetEntryView: View {
         VStack(alignment: .leading, spacing: 0) {
             if let lastOption = entry.optionsData.last {
                 HStack {
-                    Text("QuinOptionsAi")
+                    Text("OptionsAi by Quino")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                         .foregroundColor(colorScheme == .dark ? .white : .black)
